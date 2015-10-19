@@ -1,0 +1,26 @@
+@import 'scales';
+@import 'typography';
+@import 'compass/css3/border-radius';
+@import 'compass/css3';
+
+$body_bg: #F7F7F5;
+
+
+[ng\:cloak], [ng-cloak], [data-ng-cloak], [x-ng-cloak], .ng-cloak, .x-ng-cloak {
+  display: none !important;
+}
+
+body {
+  padding-top: 60px;
+  background-color: $body_bg;
+  @include user-select(none);
+}
+
+
+.footer p {
+  font-size: 10pt;
+  margin: 10px;
+  text-align: center;
+  color: #aaa;
+  @include text-shadow(rgba(#444, 0.1) 0px 0px 0);
+}
