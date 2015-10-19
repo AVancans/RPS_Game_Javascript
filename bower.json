@@ -1,5 +1,5 @@
 {
-  "name": "jstest",
+  "name": "RPSApp",
   "version": "0.1.0",
   "dependencies": {
     "angular": "1.3.6",
