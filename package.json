@@ -40,8 +40,8 @@
     "node": "0.10.36"
   },
   "scripts": {
-	"postinstall": "node_modules/.bin/bower install",
-	"test": "grunt test",
-  "start": "grunt serve --target=heroku"
+    "postinstall": "node_modules/.bin/bower install",
+    "test": "grunt test",
+    "start": "grunt serve --target=heroku"
   }
 }
