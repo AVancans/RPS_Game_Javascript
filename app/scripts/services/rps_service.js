@@ -1,6 +1,5 @@
 'use strict';
 
-
 angular.module('RPSApp').factory('RPSService', ['$timeout', function ($timeout) {
 
     var ROCK = 'ROCK';
@@ -15,7 +14,6 @@ angular.module('RPSApp').factory('RPSService', ['$timeout', function ($timeout) 
     var selectedChoice = null;
     var computerChoice = null;
 
-
     var choices = [ROCK, PAPER, SCISSORS];
 
     var lookupTable = {};
@@ -28,7 +26,6 @@ angular.module('RPSApp').factory('RPSService', ['$timeout', function ($timeout) 
     });
 
     function playComputer() {
-
         $timeout(function() {
             selectedChoice = choices[Math.floor(Math.random() * 3)];
             $timeout(function() {
@@ -38,25 +35,17 @@ angular.module('RPSApp').factory('RPSService', ['$timeout', function ($timeout) 
                 }, 1500);
             }, 2000);
         }, 2000);
-
     }
 
     function playHuman(choice) {
-
         selectedChoice = choice;
-
-        console.log(choice);
-
         $timeout(function() {
             computerChoice = choices[Math.floor(Math.random() * 3)];
             $timeout(function() {
                 result  = lookupTable[computerChoice][selectedChoice];
             }, 1500);
-
         }, 2000);
-
     }
-
 
     function resetGame() {
         result = false;
@@ -64,12 +53,7 @@ angular.module('RPSApp').factory('RPSService', ['$timeout', function ($timeout) 
         computerChoice = null;
     }
 
-
-
     return  {
-        getChoices: function() {
-            return choices;
-        },
         playComputer: playComputer,
         playHuman: playHuman,
         resetGame: resetGame,
@@ -81,7 +65,10 @@ angular.module('RPSApp').factory('RPSService', ['$timeout', function ($timeout) 
         },
         computerChoice: function() {
             return computerChoice;
-        }
+        },
+        getChoices: function() {
+            return choices;
+        },
     };
 
 }]);

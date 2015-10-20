@@ -19,7 +19,6 @@ angular.module('RPSApp').controller('MainCtrl', ['$scope', 'RPSService',  functi
         return RPSService.computerChoice();
     };
 
-
     $scope.playComputer = function() {
         $scope.inGame = true;
         $scope.humanMode = false;
