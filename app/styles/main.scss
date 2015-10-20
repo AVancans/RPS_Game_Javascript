@@ -2,18 +2,153 @@
 @import 'typography';
 @import 'compass/css3/border-radius';
 @import 'compass/css3';
+@import url(http://fonts.googleapis.com/css?family=Share+Tech+Mono);
 
-$body_bg: #F7F7F5;
+$body_bg: #1F2120;
+$selected-bg-color: olivedrab;
 
 
 [ng\:cloak], [ng-cloak], [data-ng-cloak], [x-ng-cloak], .ng-cloak, .x-ng-cloak {
   display: none !important;
 }
 
+svg.title {
+  width: 100%;
+  height: 120px;
+  display: block;
+  position: relative;
+  overflow: hidden;
+  margin: 20px auto;
+}
+
 body {
-  padding-top: 60px;
   background-color: $body_bg;
+  overflow: hidden;
+  font-family: 'Open Sans', sans-serif;
   @include user-select(none);
+}
+
+h1 {
+  text-align: center;
+  font-size: 46px;
+  color: #efefef;
+  margin: 20px;
+}
+
+h3 {
+  text-align: center;
+  font-size: 26px;
+  color: #161817;
+  @include text-shadow(rgba(#fff, 0.05) 0px 1px 1px);
+  margin: 50px;
+}
+
+.gameWindow {
+  margin-top: 150px;
+  width: 100%;
+  position: relative;
+}
+
+.mode-selection {
+  opacity: 1;
+  -webkit-transition:all cubic-bezier(0.250, 0.460, 0.450, 0.940) 0.7s;
+  -moz-transition:all cubic-bezier(0.250, 0.460, 0.450, 0.940) 0.7s;
+  -o-transition:all cubic-bezier(0.250, 0.460, 0.450, 0.940) 0.7s;
+  transition:all cubic-bezier(0.250, 0.460, 0.450, 0.940) 0.7s;
+}
+
+.mode-selection.ng-hide {
+  opacity: 0;
+  transform: scale(3);
+}
+
+.game {
+  margin-top: 100px;
+
+  opacity: 1;
+  transform: scale(1);
+
+  -webkit-transition:all cubic-bezier(0.250, 0.460, 0.450, 0.940) 0.7s;
+  -moz-transition:all cubic-bezier(0.250, 0.460, 0.450, 0.940) 0.7s;
+  -o-transition:all cubic-bezier(0.250, 0.460, 0.450, 0.940) 0.7s;
+  transition:all cubic-bezier(0.250, 0.460, 0.450, 0.940) 0.7s;
+  transition-delay: 0.7s;
+  -webkit-transition-delay: 0.7s;
+}
+
+.game.ng-hide {
+  opacity: 0;
+  transform: scale(0);
+}
+
+.round-div {
+  width: 300px;
+  height:300px;
+  margin: 50px;
+  text-align: center;
+  padding-top: 100px;
+  font-size: 30pt;
+  font-weight: bold;
+  @include border-radius(200px);
+  cursor: pointer;
+  color: rgba(0,0,0,0.25);
+  transition: all .2s ease-in-out;
+
+}
+
+.result-badge {
+  position: absolute;
+  width: 100%;
+  z-index: 10;
+  text-align: center;
+
+
+  div {
+    transform: scale(1);
+    transition: all .5s ease-in-out;
+    margin: 50px auto;
+    @include border-radius(300px);
+    width: 450px;
+    height: 450px;
+    background-color: #286a9a;
+    color: #ffffff;
+    font-size: 35pt;
+    font-weight: bold;
+    text-align: center;
+    top: 50%;
+    padding-top: 150px;
+    cursor: pointer;
+  }
+
+  div:hover {
+    transform: scale(1.1);
+  }
+
+  div.ng-hide {
+    transform: scale(0);
+  }
+
+  p {
+    font-size: 23px;
+    margin: 40px auto;
+    font-weight: normal;
+  }
+
+}
+
+.round-div:hover {
+  transform: scale(1.1);
+}
+
+.left {
+  background-color: #CCCC00;
+  float: right;
+
+}
+
+.right {
+  background-color: #B20000;
+  float: left;
 }
 
 
@@ -21,6 +156,169 @@ body {
   font-size: 10pt;
   margin: 10px;
   text-align: center;
-  color: #aaa;
+  color: #999;
   @include text-shadow(rgba(#444, 0.1) 0px 0px 0);
+}
+
+.player-choices {
+
+  text-align: center;
+  margin: 20px auto;
+
+  span{
+    font-size:36px;
+    line-height:40px;
+    font-family: 'Open Sans', sans-serif;
+    color:#ecf0f1;
+    font-weight: bold;
+    padding: 10px;
+    margin: 10px;
+    cursor: pointer;
+
+    -webkit-transition: all 0.21s ease-in-out;
+    -moz-transition: all 0.21s ease-in-out;
+    -o-transition: all 0.21s ease-in-out;
+    -ms-transition: all 0.21s ease-in-out;
+    transition: all 0.21s ease-in-out;
+
+  }
+
+  span:hover{
+    background-color: #333;
+  }
+
+  span.selected {
+    background-color: $selected-bg-color;
+  }
+
+}
+
+
+
+.choice {
+  width:350px;
+  font-size:36px;
+  line-height:40px;
+  font-family: 'Open Sans', sans-serif;
+  color:#ecf0f1;
+  height:40px;
+  position:relative;
+  margin: 20px auto;
+
+  &:before {
+    choice:'[';
+    position:absolute;
+    left:-30px;
+    line-height:40px;
+  }
+  &:after {
+    choice:']';
+    position:absolute;
+    right:-30px;
+    line-height:40px;
+  }
+  &:after, &:before {
+    color:#16a085;
+    font-size:42px;
+    animation:0.5s linear 0s normal none infinite opacity;
+    -webkit-animation:0.5s ease-out 0s normal none infinite opacity;
+    -moz-animation:0.5s ease-out 0s normal none infinite opacity;
+    -o-animation:0.5s ease-out 0s normal none infinite opacity;
+  }
+}
+
+.visible {
+  float:left;
+  font-weight:600;
+  overflow:hidden;
+  height:40px;
+}
+
+.choice p {
+  display:inline;
+  float:left;
+  margin:0;
+  font-size:36px;
+  line-height:40px;
+  font-family: 'Open Sans', sans-serif;
+  color:#ecf0f1;
+}
+
+ul {
+  margin-top:0;
+  padding-left:200px;
+  text-align:left;
+  list-style:none;
+  animation:0.7s linear 0s normal none infinite change;
+  -webkit-animation:0.7s linear 0s normal none infinite change;
+  -moz-animation:0.7s linear 0s normal none infinite change;
+  -o-animation:0.7s linear 0s normal none infinite change;
+}
+
+ul.faster {
+  margin-top:0;
+  padding-left:200px;
+  text-align:left;
+  list-style:none;
+  animation:0.3s linear 0s normal none infinite change;
+  -webkit-animation:0.3s linear 0s normal none infinite change;
+  -moz-animation:0.3s linear 0s normal none infinite change;
+  -o-animation:0.3s linear 0s normal none infinite change;
+}
+
+ul.stop {
+  margin-top:0;
+  padding-left:200px;
+  text-align:left;
+  list-style:none;
+  animation: none;
+  -webkit-animation:none;
+  -moz-animation:none;
+  -o-animation:none;
+
+  li {
+    background-color: $selected-bg-color;
+  }
+}
+
+
+
+
+ul li {
+  line-height:40px;
+  margin:0;
+}
+
+@-webkit-keyframes opacity {
+  0%   {opacity:0;}
+  50%  {opacity:1;}
+  100% {opacity:0;}
+}
+@keyframes opacity {
+  0%   {opacity:0;}
+  50%  {opacity:1;}
+  100% {opacity:0;}
+}
+
+@-webkit-keyframes change {
+  0%   {margin-top:0;}
+  15%  {margin-top:0;}
+  25%  {margin-top:-40px;}
+  40%  {margin-top:-40px;}
+  50%  {margin-top:-80px;}
+  65%  {margin-top:-80px;}
+  75%  {margin-top:-40px;}
+  85%  {margin-top:-40px;}
+  100% {margin-top:0;}
+}
+@keyframes change {
+  0%   {margin-top:0;}
+  15%  {margin-top:0;}
+  25%  {margin-top:-40px;}
+  40%  {margin-top:-40px;}
+  50%  {margin-top:-80px;}
+  65%  {margin-top:-80px;}
+  75%  {margin-top:-40px;}
+  85%  {margin-top:-40px;}
+  100% {margin-top:0;}
 }

@@ -1,1 +1,44 @@
-<h1>Hello world!</h1>
+<div class="gameWindow">
+
+    <ng-include src="'views/title_svg.html'"></ng-include>
+
+
+    <div class="rows mode-selection" ng-hide="inGame" >
+        <div class="col-md-6"><div class="round-div left" ng-click="playHuman()">Player vs Computer</div></div>
+        <div class="col-md-6"><div class="round-div right" ng-click="playComputer()">Computer vs Computer</div></div>
+    </div>
+
+    <div class="result-badge" ng-show="result()">
+        <div ng-show="result()" ng-click="resetGame()">{{result()}}!<p>Try again?</p></div>
+    </div>
+
+
+    <div class="rows game" ng-show="inGame">
+
+        <div class='player-choices' ng-show="humanMode">
+            <span ng-repeat="choice in choices" ng-click="userPick(choice)"  ng-class="{selected: choice === selectedChoice()}" >{{choice}}</span>
+        </div>
+
+        <div class='choice' ng-hide="humanMode">
+            <div class='visible'>
+                <p>Computer: </p>
+                <ul ng-class="{stop: selectedChoice()}" >
+                    <li ng-repeat="choice in choices" ng-hide="selectedChoice() && selectedChoice() != choice" >{{choice}}</li>
+                </ul>
+            </div>
+        </div>
+
+        <h3>versus</h3>
+
+        <div class='choice'>
+            <div class='visible'>
+                <p>Computer: </p>
+                <ul ng-class="{stop: computerChoice(), faster: selectedChoice()}" >
+                    <li ng-repeat="choice in choices" ng-hide="computerChoice() && computerChoice() != choice" >{{choice}}</li>
+                </ul>
+            </div>
+        </div>
+
+    </div>
+
+</div>
