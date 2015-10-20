@@ -36,6 +36,7 @@
     "karma-coverage": "0.2.6"
   },
   "engines": {
+    "npm": "2.1.x",
     "node": "0.10.36"
   },
   "scripts": {
